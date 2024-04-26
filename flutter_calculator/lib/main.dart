@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calculator/bindings/my_bindings.dart';
-import 'package:flutter_calculator/screen/main_screen.dart';
+import 'package:fira_calculator/bindings/my_bindings.dart';
+import 'package:fira_calculator/screen/main_screen.dart';
 import 'package:get/get.dart';
 
 //

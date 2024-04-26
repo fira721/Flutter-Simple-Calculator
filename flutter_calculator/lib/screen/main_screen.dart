@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
-import 'package:flutter_calculator/controller/calculate_controller.dart';
-import 'package:flutter_calculator/controller/theme_controller.dart';
-import 'package:flutter_calculator/utils/colors.dart';
-import 'package:flutter_calculator/widget/button.dart';
+import 'package:fira_calculator/controller/calculate_controller.dart';
+import 'package:fira_calculator/controller/theme_controller.dart';
+import 'package:fira_calculator/utils/colors.dart';
+import 'package:fira_calculator/widget/button.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -45,6 +46,12 @@ class MainScreen extends StatelessWidget {
             : LightColors.scaffoldBgColor,
         body: Column(
           children: [
+            Container(
+              child: Text(
+                'Fira Calculator',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
             GetBuilder<CalculateController>(builder: (context) {
               return outPutSection(themeController, controller);
             }),
@@ -61,6 +68,7 @@ class MainScreen extends StatelessWidget {
     return Expanded(
         flex: 2,
         child: Container(
+          height: 800,
           padding: const EdgeInsets.all(3),
           decoration: BoxDecoration(
               color: themeController.isDark
@@ -147,34 +155,38 @@ class MainScreen extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        /// theme switcher
-        Padding(
-          padding: const EdgeInsets.only(top: 40),
-          child: GetBuilder<ThemeController>(builder: (controller) {
-            return AdvancedSwitch(
-              controller: controller.switcherController,
-              activeImage: const AssetImage('assets/day_sky.png'),
-              inactiveImage: const AssetImage('assets/night_sky.jpg'),
-              activeColor: Colors.green,
-              inactiveColor: Colors.grey,
-              activeChild: Text(
-                'Day',
-                style: GoogleFonts.ubuntu(
-                    fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-              inactiveChild: Text(
-                'Night',
-                style: GoogleFonts.ubuntu(
-                    fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(1000)),
-              width: 100.0,
-              height: 45.0,
-              enabled: true,
-              disabledOpacity: 0.5,
-            );
-          }),
+        Container(
+          child: Text('Fira Calculator', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
         ),
+
+        /// theme switcher
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 40),
+        //   child: GetBuilder<ThemeController>(builder: (controller) {
+        //     return AdvancedSwitch(
+        //       controller: controller.switcherController,
+        //       activeImage: const AssetImage('assets/day_sky.png'),
+        //       inactiveImage: const AssetImage('assets/night_sky.jpg'),
+        //       activeColor: Colors.green,
+        //       inactiveColor: Colors.grey,
+        //       activeChild: Text(
+        //         'Day',
+        //         style: GoogleFonts.ubuntu(
+        //             fontWeight: FontWeight.bold, fontSize: 17),
+        //       ),
+        //       inactiveChild: Text(
+        //         'Night',
+        //         style: GoogleFonts.ubuntu(
+        //             fontWeight: FontWeight.bold, fontSize: 16),
+        //       ),
+        //       borderRadius: const BorderRadius.all(Radius.circular(1000)),
+        //       width: 100.0,
+        //       height: 25.0,
+        //       enabled: true,
+        //       disabledOpacity: 0.5,
+        //     );
+        //   }),
+        // ),
 
         /// Main Result - user input and output
         Padding(
@@ -187,7 +199,7 @@ class MainScreen extends StatelessWidget {
                   controller.userInput,
                   style: GoogleFonts.ubuntu(
                       color:
-                          themeController.isDark ? Colors.white : Colors.black,
+                          themeController.isDark ? const Color.fromARGB(255, 0, 0, 0) : Colors.black,
                       fontSize: 38),
                 ),
               ),
@@ -197,7 +209,7 @@ class MainScreen extends StatelessWidget {
                   controller.userOutput,
                   style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold,
-                    color: themeController.isDark ? Colors.white : Colors.black,
+                    color: themeController.isDark ? const Color.fromARGB(255, 0, 0, 0) : Colors.black,
                     fontSize: 60,
                   ),
                 ),
